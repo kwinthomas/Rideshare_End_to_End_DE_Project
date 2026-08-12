@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "file_list_lookup",
+				"name": "files_list_lookup",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -37,7 +37,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "file_list_lookup",
+						"activity": "files_list_lookup",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -46,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('file_list_lookup').output.value",
+						"value": "@activity('files_list_lookup').output.value",
 						"type": "Expression"
 					},
 					"activities": [
