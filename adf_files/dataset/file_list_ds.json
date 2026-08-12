@@ -1,0 +1,18 @@
+{
+	"name": "file_list_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "git_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "kwinthomas/Rideshare_End_to_End_DE_Project/refs/heads/main/Raw_Data/files_list.json"
+			}
+		},
+		"schema": {}
+	}
+}

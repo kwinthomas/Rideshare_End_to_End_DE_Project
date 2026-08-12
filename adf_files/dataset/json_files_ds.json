@@ -1,0 +1,26 @@
+{
+	"name": "json_files_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "git_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "kwinthomas/Rideshare_End_to_End_DE_Project/refs/heads/main/Raw_Data/@{dataset().p_file_name}",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
