@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+  - name: silver
+    database: rideshare
+    schema: silver
+
+    tables:
+      - name: rides_enriched
+        loaded_at_field: _silver_processed_at
+        freshness:
+          warn_after: {count: 30, period: minute}
+          error_after: {count: 3, period: hour}
+        columns:
+          - name: ride_id
+            data_tests:
+              - unique
+              - not_null
+          - name: pickup_timestamp
+            data_tests:
+              - not_null
+          - name: total_fare
+            data_tests:
+              - dbt_utils.expression_is_true:
+                  expression: ">= 0"
+
+      - name: ref_cities
+        columns:
+          - name: city_id
+            data_tests:
+              - unique
+              - not_null
+
+      - name: ref_vehicle_types
+        columns:
+          - name: vehicle_type_id
+            data_tests:
+              - unique
+              - not_null
+
+      - name: ref_vehicle_makes
+        columns:
+          - name: vehicle_make_id
+            data_tests:
+              - unique
+              - not_null
+
+      - name: ref_payment_methods
+        columns:
+          - name: payment_method_id
+            data_tests:
+              - unique
+              - not_null
+
+      - name: ref_ride_statuses
+        columns:
+          - name: ride_status_id
+            data_tests:
+              - unique
+              - not_null
+
+      - name: ref_cancellation_reasons
+        columns:
+          - name: cancellation_reason_id
+            data_tests:
+              - unique
+              - not_null
