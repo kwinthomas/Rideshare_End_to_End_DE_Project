@@ -4,7 +4,7 @@ from pyspark.sql.functions import *
 
 def _mapping(table, columns):
     """Static read of a bronze mapping table, lineage columns stripped."""
-    return spark.read.table(f"rideshare.bronze.{table}").select(*columns)
+    return spark.read.table(f"rideshare.silver.{table}").select(*columns)
 
 
 @dp.table(
@@ -36,7 +36,7 @@ def _mapping(table, columns):
 def rides_enriched():
     rides = spark.readStream.table("rideshare.silver.staging_rides")
 
-    cities = _mapping("map_cities", ["city_id", "city", "state", "region"])
+    cities = _mapping("ref_cities", ["city_id", "city", "state", "region"])
     pickup_city = cities.select(
         col("city_id").alias("pu_city_id"),
         col("city").alias("pickup_city"),
@@ -51,17 +51,17 @@ def rides_enriched():
     )
 
     vehicle_types = _mapping(
-        "map_vehicle_types",
+        "ref_vehicle_types",
         ["vehicle_type_id", "vehicle_type", "description", "base_rate", "per_mile", "per_minute"],
     ).withColumnRenamed("description", "vehicle_type_description")
 
-    vehicle_makes = _mapping("map_vehicle_makes", ["vehicle_make_id", "vehicle_make"])
+    vehicle_makes = _mapping("ref_vehicle_makes", ["vehicle_make_id", "vehicle_make"])
     payment_methods = _mapping(
-        "map_payment_methods", ["payment_method_id", "payment_method", "is_card", "requires_auth"]
+        "ref_payment_methods", ["payment_method_id", "payment_method", "is_card", "requires_auth"]
     )
-    ride_statuses = _mapping("map_ride_statuses", ["ride_status_id", "ride_status", "is_completed"])
+    ride_statuses = _mapping("ref_ride_statuses", ["ride_status_id", "ride_status", "is_completed"])
     cancellations = _mapping(
-        "map_cancellation_reasons", ["cancellation_reason_id", "cancellation_reason"]
+        "ref_cancellation_reasons", ["cancellation_reason_id", "cancellation_reason"]
     )
 
     return (
