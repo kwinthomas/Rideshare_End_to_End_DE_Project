@@ -1,0 +1,49 @@
+[0m02:07:53.936775 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dcb3e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dc042d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd24f50>]}
+
+
+============================== 02:07:53.939429 | 09047e1e-546a-4758-94f9-c7339f1951a7 ==============================
+[0m02:07:53.939429 [info ] [MainThread]: Running with dbt=1.11.12
+[0m02:07:53.939695 [debug] [MainThread]: running dbt with arguments {'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_cache_events': 'False', 'write_json': 'True', 'indirect_selection': 'eager', 'fail_fast': 'False', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'profiles_dir': '/Users/mac/.dbt', 'warn_error': 'None', 'no_print': 'None', 'use_experimental_parser': 'False', 'log_format': 'default', 'partial_parse': 'True', 'target_path': 'None', 'invocation_command': 'dbt init rideshare_dbt', 'use_colors': 'True', 'version_check': 'True', 'quiet': 'False', 'printer_width': '80', 'debug': 'False', 'cache_selected_only': 'False', 'static_parser': 'True'}
+[0m02:07:53.949665 [debug] [MainThread]: Starter project path: /opt/homebrew/lib/python3.11/site-packages/dbt/include/starter_project
+[0m02:07:53.959965 [info ] [MainThread]: 
+Your new dbt project "rideshare_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m02:07:53.960382 [info ] [MainThread]: Setting up your profile.
+[0m02:08:40.149473 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m02:08:40.149889 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m02:08:40.150026 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m02:10:13.794983 [info ] [MainThread]: Profile rideshare_dbt written to /Users/mac/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m02:10:13.850203 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 139.94331, "process_in_blocks": "0", "process_kernel_time": 0.375349, "process_mem_max_rss": "225574912", "process_out_blocks": "0", "process_user_time": 1.212975}
+[0m02:10:13.852025 [debug] [MainThread]: Command `dbt init` succeeded at 02:10:13.851899 after 139.95 seconds
+[0m02:10:13.852847 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109b901d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10da4e550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1138cf350>]}
+[0m02:10:13.853251 [debug] [MainThread]: Flushing usage events
+[0m02:10:14.949490 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m03:02:54.908555 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095bfb50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10963d650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10963e110>]}
+
+
+============================== 03:02:54.911292 | 9e1eb09d-a8ef-4ceb-9fcc-810b7038a547 ==============================
+[0m03:02:54.911292 [info ] [MainThread]: Running with dbt=1.11.12
+[0m03:02:54.911560 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'profiles_dir': '/Users/mac/.dbt', 'target_path': 'None', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False', 'quiet': 'False', 'log_path': 'logs', 'static_parser': 'True', 'debug': 'False', 'fail_fast': 'False', 'write_json': 'True', 'indirect_selection': 'eager', 'version_check': 'True', 'invocation_command': 'dbt deps', 'send_anonymous_usage_stats': 'True', 'log_format': 'default', 'no_print': 'None', 'empty': 'None', 'introspect': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'use_colors': 'True', 'log_cache_events': 'False'}
+[0m03:02:54.911957 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/mac/GitHub/Rideshare_End_to_End_DE_Project/Dbt/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m03:02:54.919894 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": false, "command_wall_clock_time": 0.044737626, "process_in_blocks": "0", "process_kernel_time": 0.128747, "process_mem_max_rss": "109805568", "process_out_blocks": "0", "process_user_time": 0.534422}
+[0m03:02:54.920195 [debug] [MainThread]: Command `dbt deps` failed at 03:02:54.920141 after 0.05 seconds
+[0m03:02:54.920388 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109359ed0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109359c10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095bc150>]}
+[0m03:02:54.920566 [debug] [MainThread]: Flushing usage events
+[0m03:02:56.046291 [debug] [MainThread]: An error was encountered while trying to flush usage events

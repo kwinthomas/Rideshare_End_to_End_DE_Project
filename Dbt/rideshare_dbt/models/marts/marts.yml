@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: dim_date
+    columns:
+      - name: date_key
+        data_tests:
+              - unique
+              - not_null
+
+  - name: dim_city
+    columns:
+      - name: city_key
+        data_tests:
+              - unique
+              - not_null
+      - name: city_name
+        data_tests:
+              - not_null
+
+  - name: dim_vehicle_type
+    columns:
+      - name: vehicle_type_key
+        data_tests:
+              - unique
+              - not_null
+      - name: tier_rank
+        data_tests:
+          - dbt_utils.accepted_range: {min_value: 1, max_value: 99}
+
+  - name: dim_vehicle_make
+    columns:
+      - name: vehicle_make_key
+        data_tests:
+              - unique
+              - not_null
+
+  - name: dim_payment_method
+    columns:
+      - name: payment_method_key
+        data_tests:
+              - unique
+              - not_null
+
+  - name: dim_ride_status
+    columns:
+      - name: ride_status_key
+        data_tests:
+              - unique
+              - not_null
+      - name: ride_status_name
+        data_tests:
+          - accepted_values: {values: ['Completed', 'Cancelled', 'Unknown']}
+
+  - name: dim_cancellation_reason
+    columns:
+      - name: cancellation_reason_key
+        data_tests:
+              - unique
+              - not_null
+
+  - name: fct_rides
+    columns:
+      - name: ride_id
+        data_tests:
+              - unique
+              - not_null
+
+      - name: date_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_date'), field: date_key}
+      - name: pickup_city_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_city'), field: city_key}
+      - name: dropoff_city_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_city'), field: city_key}
+      - name: vehicle_type_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_vehicle_type'), field: vehicle_type_key}
+      - name: vehicle_make_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_vehicle_make'), field: vehicle_make_key}
+      - name: payment_method_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_payment_method'), field: payment_method_key}
+      - name: ride_status_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_ride_status'), field: ride_status_key}
+      - name: cancellation_reason_key
+        data_tests:
+          - not_null
+          - relationships: {to: ref('dim_cancellation_reason'), field: cancellation_reason_key}
+
+      - name: total_fare
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range: {min_value: 0, inclusive: true}
+      - name: distance_miles
+        data_tests:
+          - dbt_utils.accepted_range: {min_value: 0, max_value: 100}
+      - name: surge_multiplier
+        data_tests:
+          - dbt_utils.accepted_range: {min_value: 1.0, max_value: 3.0}
+      - name: fare_band
+        data_tests:
+          - accepted_values:
+              values: ['Under $15', '$15 to $30', '$30 to $60', '$60 to $120', '$120 and over', 'Unknown']
+      - name: _source_system
+        data_tests:
+          - accepted_values: {values: ['eventhub', 'bulk_file']}
