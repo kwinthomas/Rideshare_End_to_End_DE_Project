@@ -53,15 +53,15 @@ This is a project I created to experiment with streaming data, CDC, autoloader, 
 └───────────────────────────────┬──────────────────────────────────┘
                                 │  Serverless SQL Warehouse
                                 ▼
-┌────────────────────────────────────────────────────────────────┐
-│  dbt Core · gold                                               │
-│    7 staging models  →  7 dimensions + fct_rides (incremental) │
-└───────────────────────────────┬────────────────────────────────┘
-                                │  star schema
-                                ▼
-                        ┌───────────────┐
-                        │   Power BI    │  
-                        └───────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│  dbt Core · gold                                                 │
+│    7 staging models  →  7 dimensions + fct_rides (incremental)   │
+└────────────────────────────────┬─────────────────────────────────┘
+                                 │  star schema
+                                 ▼
+                          ┌───────────────┐
+                          │   Power BI    │  
+                          └───────────────┘
 ```
 
 **Stack**
