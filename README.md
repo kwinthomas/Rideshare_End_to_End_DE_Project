@@ -300,7 +300,7 @@ your own.
 
 **On macOS**, Power BI Desktop is Windows-only. I used a Windows Server VM in the same
 subscription over RDP with folder redirection to retrieve the `.pbix`. Make sure to deallocate the
-VM from the portal once done (unless you are feeling generous towards Microsoft).
+VM in the portal once done (unless you are feeling generous towards Microsoft).
 
 ---
 
