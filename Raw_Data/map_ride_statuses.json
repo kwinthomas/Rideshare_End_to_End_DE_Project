@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
 [{"ride_status_id":1,"ride_status":"Completed","is_completed":true},{"ride_status_id":2,"ride_status":"Cancelled","is_completed":false},{"ride_status_id":3,"ride_status":"In-progress","is_completed":false}]
-=======
-[{"ride_status_id":1,"ride_status":"Completed","is_completed":true},{"ride_status_id":2,"ride_status":"Cancelled","is_completed":false},{"ride_status_id":3,"ride_status":"In-progress","is_completed":false}]
->>>>>>> Stashed changes
