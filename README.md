@@ -113,7 +113,7 @@ Rideshare_End_to_End_DE_Project/
 │   └── 05_silver_reference.py
 │
 ├── Dbt/
-│ └── rideshare_dbt/
+│ ├── rideshare_dbt/
 │ ├── dbt_project.yml
 │ ├── packages.yml
 │
