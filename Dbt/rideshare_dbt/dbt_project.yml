@@ -30,5 +30,5 @@ snapshots:
 
 vars:
   unknown_key: -1
-  date_spine_start: '2025-01-01'
+  date_spine_start: '2020-01-01'
   date_spine_end: '2028-01-01'
