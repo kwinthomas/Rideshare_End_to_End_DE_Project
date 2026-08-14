@@ -164,7 +164,7 @@ def generate_uber_ride_confirmation(booked_at=None):
         "passenger_phone": fake.phone_number(),
         # Driver
         "driver_name": fake.name(),
-        "driver_rating": round(random.uniform(4.0, 5.0), 2),
+        "driver_rating": round(random.uniform(1.0, 5.0), 2),
         "driver_phone": fake.phone_number(),
         "driver_license": fake.bothify("??-???-#######").upper(),
         # Vehicle
