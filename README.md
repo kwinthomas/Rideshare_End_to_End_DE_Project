@@ -37,9 +37,9 @@ This is a project I created to experiment with streaming data, CDC, autoloader, 
              │                                     ▼
              │                          ┌──────────────────────┐
              │                          │  ADLS Gen2 · raw     │
-             │                          └───────────┬──────────┘
-             │                                      │ Auto Loader
-             ▼                                      ▼
+             │                          └──────────┬───────────┘
+             │                                     │ Auto Loader
+             ▼                                     ▼
 ┌──────────────────────────────────────────────────────────────────┐
 │  Azure Databricks · Unity Catalog · Declarative Pipeline         │
 │                                                                  │
