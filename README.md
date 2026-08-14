@@ -115,7 +115,7 @@ Rideshare_End_to_End_DE_Project/
 ├── Dbt/
 │ ├── rideshare_dbt/
 │ ├── dbt_project.yml
-│ ├── packages.yml
+│ └── packages.yml
 │
 │ ├── models/
 │ │ ├── staging/ sources.yml + 7 staging models
