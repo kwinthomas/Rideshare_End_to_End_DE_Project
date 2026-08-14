@@ -33,6 +33,7 @@ PAYMENT_METHOD_MAPPING = [
 RIDE_STATUS_MAPPING = [
     {"ride_status_id": 1, "ride_status": "Completed", "is_completed": True},
     {"ride_status_id": 2, "ride_status": "Cancelled", "is_completed": False},
+    {"ride_status_id": 3, "ride_status": "In-progress", "is_completed": False}
 ]
 
 VEHICLE_MAKE_MAPPING = [
@@ -76,6 +77,17 @@ PAYMENT_METHOD_IDS = [p["payment_method_id"] for p in PAYMENT_METHOD_MAPPING]
 
 VEHICLE_MODELS = ["Corolla", "Camry", "Civic", "Accord", "Focus", "Malibu", "Altima", "3 Series", "C-Class"]
 
+# UberX dominates real-world mix; Black/XL are rarer.
+VEHICLE_TYPE_WEIGHTS = {
+    1: 48,  # UberX
+    2: 12,  # UberXL
+    3: 20,  # UberPOOL
+    4: 12,  # Uber Comfort
+    5: 6,   # Uber Black
+}
+
+VEHICLE_TYPE_IDS = [t["vehicle_type_id"] for t in VEHICLE_TYPE_MAPPING]
+_VEHICLE_TYPE_WEIGHT_LIST = [VEHICLE_TYPE_WEIGHTS[i] for i in VEHICLE_TYPE_IDS]
 
 def _jitter(value, spread=0.08):
     return round(value + random.choice(-spread, spread), 6)
@@ -87,12 +99,12 @@ def generate_uber_ride_confirmation(booked_at=None):
     booked_at: optional datetime. Defaults to now (UTC) for live events; the
     bulk generator passes historical timestamps.
     """
-    booking_time = booked_at or datetime.now(timezone.utc)
+    booking_time = booked_at or fake.date_time_between(start_date='-2y', end_date='now')
     pickup_time = booking_time + timedelta(minutes=random.randint(1, 10))
     duration_minutes = random.randint(5, 120)
     dropoff_time = pickup_time + timedelta(minutes=duration_minutes)
 
-    vehicle_type_id = random.choice(VEHICLE_TYPE_IDS)
+    vehicle_type_id = random.choices(VEHICLE_TYPE_IDS, weights=_VEHICLE_TYPE_WEIGHT_LIST, k=1)[0]
     rates = VEHICLE_TYPE_BY_ID[vehicle_type_id]
 
     distance = round(random.choice(0.5, 50), 2)
@@ -105,9 +117,16 @@ def generate_uber_ride_confirmation(booked_at=None):
     # Status drives everything downstream: cancelled rides earn no tip,
     # get no rating, and carry a real cancellation reason.
     is_cancelled = random.random() < 0.12
+    is_inprogress = random.random() < 0.34
     if is_cancelled:
         ride_status_id = 2
         cancellation_reason_id = random.choice([1, 2, 3])
+        tip = 0.0
+        rating = None
+        dropoff_time = None
+    elif is_inprogress:
+        ride_status_id = 3
+        cancellation_reason_id = 4
         tip = 0.0
         rating = None
         dropoff_time = None
