@@ -70,7 +70,7 @@ This is a project I created to experiment with streaming data, CDC, autoloader, 
 |---|---|
 | Ride book event generation | Python, FastAPI, Faker |
 | Streaming ingest | Azure Event Hub (Kafka-compatible endpoint) |
-| Batch ingest | Azure Data Factory — Lookup / ForEach / Copy, HTTP linked service |
+| Batch ingest | Azure Data Factory — Lookup / ForEach / Copy / HTTP linked service |
 | Storage | Azure Data Lake Storage Gen2 |
 | Compute | Azure Databricks — Lakeflow Declarative Pipelines, Structured Streaming, Auto Loader |
 | Governance | Unity Catalog — access connector, storage credential, external locations |
