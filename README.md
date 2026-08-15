@@ -223,9 +223,9 @@ duplicated the query into `dim_city_dropoff`, two active relationships means a u
 city name onto a visual gets an unambiguous result, and I do not have to write two
 versions of every geographic measure. 
 
-Few of DAX Measures which were created can be seen the Power BI folder.
+Few of the DAX Measures which were created can be seen the Power BI folder.
 
-
+<img width="2075" height="1200" alt="Dashboard" src="https://github.com/user-attachments/assets/cd62af6a-2b8f-4c5d-b3e5-862ceb21e767" />
 
 ---
 
