@@ -156,7 +156,7 @@ file in ADLS. Adding a file is a config edit, not a pipeline change.
 `databricks/transformations/01_bronze_eventhub.py`, `02_bronze_files.py`
 
 `rides_raw` reads the Event Hub through its Kafka endpoint. The Kafka stream is preserved and the value is cast to string. No
-parsing happens here (it is a bronze layer after all). Make sure to get the listen policy connection string from eventhub ad reference it in the ETL pipeline.
+parsing happens here (it is a bronze layer after all). Make sure to get the listen policy connection string from eventhub and reference it under 'Configuration' in the ETL pipeline's settings.
 
 The seven ref tables use Auto Loader, generated from a config dictionary (check the 02_bronze_files.py to get a better understanding).
 
