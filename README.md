@@ -125,7 +125,7 @@ Rideshare_End_to_End_DE_Project/
 │
 ├── powerbi/
 │ ├── rideshare_dashboard.pbix
-│ └── dax_measures.md
+│ └── DAX_measures.md
 │
 └── README.md
 ```
