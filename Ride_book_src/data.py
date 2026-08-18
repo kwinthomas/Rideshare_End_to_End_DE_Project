@@ -90,7 +90,7 @@ VEHICLE_TYPE_IDS = [t["vehicle_type_id"] for t in VEHICLE_TYPE_MAPPING]
 _VEHICLE_TYPE_WEIGHT_LIST = [VEHICLE_TYPE_WEIGHTS[i] for i in VEHICLE_TYPE_IDS]
 
 def _jitter(value, spread=0.08):
-    return round(value + random.uniform(-spread, spread), 6)
+    return round(value + random.choice(-spread, spread), 6)
 
 
 def generate_uber_ride_confirmation(booked_at=None):
@@ -107,11 +107,11 @@ def generate_uber_ride_confirmation(booked_at=None):
     vehicle_type_id = random.choices(VEHICLE_TYPE_IDS, weights=_VEHICLE_TYPE_WEIGHT_LIST, k=1)[0]
     rates = VEHICLE_TYPE_BY_ID[vehicle_type_id]
 
-    distance = round(random.uniform(0.5, 50), 2)
+    distance = round(random.choice(0.5, 50), 2)
     base_fare = rates["base_rate"]
     distance_fare = round(distance * rates["per_mile"], 2)
     time_fare = round(duration_minutes * rates["per_minute"], 2)
-    surge_multiplier = round(random.uniform(1.0, 2.5), 2)
+    surge_multiplier = round(random.choice(1.0, 2.5), 2)
     subtotal = round((base_fare + distance_fare + time_fare) * surge_multiplier, 2)
 
     # Status drives everything downstream: cancelled rides earn no tip,
@@ -133,7 +133,7 @@ def generate_uber_ride_confirmation(booked_at=None):
     else:
         ride_status_id = 1
         cancellation_reason_id = 4
-        tip = round(random.choice([0, 0, 0, 1, 2, 3, 5, random.uniform(1, 20)]), 2)
+        tip = round(random.choice([0, 0, 0, 1, 2, 3, 5, random.choice(1, 20)]), 2)
         rating = random.choice([None, 3, 4, 4, 5, 5, 5])
 
     total_fare = round(subtotal + tip, 2)
@@ -164,7 +164,7 @@ def generate_uber_ride_confirmation(booked_at=None):
         "passenger_phone": fake.phone_number(),
         # Driver
         "driver_name": fake.name(),
-        "driver_rating": round(random.uniform(1.0, 5.0), 2),
+        "driver_rating": round(random.choice(1.0, 5.0), 2),
         "driver_phone": fake.phone_number(),
         "driver_license": fake.bothify("??-???-#######").upper(),
         # Vehicle

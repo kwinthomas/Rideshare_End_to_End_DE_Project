@@ -50,7 +50,7 @@ models:
               - not_null
       - name: ride_status_name
         data_tests:
-          - accepted_values: {values: ['Completed', 'Cancelled', 'Unknown']}
+          - accepted_values: {values: ['Completed', 'Cancelled', 'In-progress', 'Unknown']}
 
   - name: dim_cancellation_reason
     columns:
